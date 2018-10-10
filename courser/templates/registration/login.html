@@ -1,0 +1,24 @@
+{% extends "courser/base.html" %}
+
+{% block content %}
+
+<div class="container">
+<div class="col-sm-6">
+<div class="panel panel-default">
+<div class="panel-heading">Login</div>
+  <div class="panel-body">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-success">Login</button>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+
+</br></br>
+<h3>You don't have account?</h3>
+<a href="{% url 'courser:register' %}" class="btn btn-primary">Create account!</a>
+{% endblock %}

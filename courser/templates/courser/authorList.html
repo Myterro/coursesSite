@@ -1,0 +1,31 @@
+{% extends "courser/base.html" %}
+
+{% block content %}
+
+<strong>List of authors:</strong></br></br>
+        {% if authors_list %}
+            {% for author in authors_list %}
+                <div class="row panel panel-default">
+                    </br>
+                    <div class="col-md-2">
+                            <img src="{{ author.author_photo.url }}" alt="NIMA" width="100" height="100">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="col-xs-2">
+                                <a href="{% url 'courser:author' author.id %}">{{author.author_name}}</a>
+                            </div>
+                            <div class="col-xs-1">
+                                {{ author.author_age }}
+                            </div>
+                    </div>
+                    </br>
+                </div>
+                </br></br>
+
+            {% endfor %}
+        {% else %}
+            <p>No authors are available.</p>
+        {% endif %}
+
+{% endblock content %}
+

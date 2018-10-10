@@ -1,0 +1,30 @@
+{% extends "courser/base.html" %}
+
+{% block content %}
+
+<div class="row panel panel-default">
+    </br>
+    <div class="col-md-3">
+            <img src="{{ course.course_cover.url }}" class="img-responsive" alt="NIMA">
+    </div>
+    <div class="col-md-6 page-header text-center text-success">
+        <h2>{{ course.course_name }}</h2>
+    </div>
+    <div class="col-md-12 text-warning">
+        <h3>Category: {{ course.category }}</h3>
+        <hr>
+    </div>
+    <div class="col-md-10">
+        <div class="container">
+            <h3>{{ course.course_desc }}</h3>
+        </div>
+        <div class="container text-right text-primary">
+            <h3><strong>Only {{ course.course_price }}$!</strong></h3>
+            <a href="/courser/" class="btn btn-primary">Buy course</a>
+        </div>
+    </div>
+    </br>
+</div>
+
+{% endblock content %}
+

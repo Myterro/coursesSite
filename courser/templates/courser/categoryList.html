@@ -1,0 +1,18 @@
+{% extends "courser/base.html" %}
+
+{% block content %}
+
+<strong>List of categories:</strong></br></br>
+        {% if categories_list %}
+            {% for category in categories_list %}
+                <div class="row panel panel-default">
+                    <a href="{% url 'courser:category' category.id %}">{{ category }}</a>
+                </div>
+
+            {% endfor %}
+        {% else %}
+            <p>No authors are available.</p>
+        {% endif %}
+
+{% endblock content %}
+

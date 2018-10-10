@@ -1,0 +1,52 @@
+.siteBody {
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    float: left;
+    }
+
+.menu {
+    width: 80%;
+    height: 10%;
+    background-color: red;
+    float: left;
+    }
+
+.menu img {
+    width: 15%;
+    float: left;
+    }
+
+.menu button {
+    width: 10%;
+    float: left;
+    }
+
+.menu input {
+    width: 25%;
+    float: left;
+    }
+
+.content {
+    width: 100%;
+    height: 80%;
+    background-color: grey;
+    float: left;
+    }
+
+.footer {
+    width: 100%;
+    height: 10%;
+    background-color: blue;
+    float: left;
+    }
+
+.navbar-brand {
+  padding: 0px; /* firefox bug fix */
+}
+
+.navbar-brand>img {
+  height: 100%;
+  padding: 15px; /* firefox bug fix */
+  width: auto;
+}

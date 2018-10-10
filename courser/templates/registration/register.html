@@ -1,0 +1,20 @@
+{% extends "courser/base.html" %}
+
+{% block content %}
+
+<div class="container">
+<div class="col-sm-6">
+<div class="panel panel-default">
+<div class="panel-heading">Register</div>
+  <div class="panel-body">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-success">Register</button>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

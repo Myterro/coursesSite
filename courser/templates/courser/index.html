@@ -1,0 +1,32 @@
+{% extends "courser/base.html" %}
+
+{% block content %}
+
+<strong>Available courses:</strong></br></br></br>
+        {% if latest_courses %}
+            {% for course in latest_courses %}
+
+                <div class="col-xs-3">
+                    <div class="col-xs-12">
+                        <img src="{{ course.course_cover.url }}" class="img-responsive" alt="NIMA" width="50%">
+                        <hr>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-12">
+                            <a href="{% url 'courser:detail' course.id %}">{{course.course_name}}</a>
+                        </div>
+                        <div class="col-xs-12">
+                            {{ course.course_desc }}
+                        </div>
+                        <div class="col-xs-12 text-primary">
+                            Only {{ course.course_price }}$!
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        {% else %}
+            <p>No courses are available.</p>
+        {% endif %}
+
+{% endblock content %}

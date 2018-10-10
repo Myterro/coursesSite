@@ -1,0 +1,23 @@
+{% extends "courser/base.html" %}
+
+{% block content %}
+<div class="row">
+    </br>
+    <div class="col-md-2">
+            <img src="{{ author.author_photo.url }}" class="img-responsive" alt="NIMA">
+    </div>
+    <div class="col-md-6">
+        <div class="container">
+            {{ author.author_name }}
+        </div>
+        <div class="container">
+            {{ author.author_age }}
+        </div>
+    </div>
+    </br>
+</div>
+
+{% endblock content %}
+
+
+

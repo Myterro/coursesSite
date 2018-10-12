@@ -3,8 +3,9 @@ from django.utils import timezone
 
 
 class Author(models.Model):
-    author_name = models.CharField(max_length=40)
+    author_name = models.CharField(max_length=50)
     author_age = models.IntegerField(default=0)
+    author_country = models.CharField(max_length=100, default="")
     author_photo = models.ImageField(blank=True, null=True,
                                      upload_to="authors/",
                                      default='noimg.png')
@@ -25,14 +26,14 @@ class CourseCategory(models.Model):
 
 class Course(models.Model):
     course_name = models.CharField(max_length=80)
-    pub_date = models.DateTimeField('date published', default=timezone.now())
+    pub_date = models.DateField('date published', default=timezone.now().date())
     course_desc = models.CharField(max_length=1000)
-    course_cover = models.ImageField(blank=True, null=True,
-                                     upload_to="covers/%Y/%m/%D/",
-                                     default='noimg.png')
     course_price = models.IntegerField(default=0)
     category = models.ForeignKey(CourseCategory, on_delete=models.CASCADE)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, )
+    course_cover = models.ImageField(blank=True, null=True,
+                                     upload_to="covers/%Y/%m/%D/",
+                                     default='noimg.png')
 
     def __str__(self):
         return self.course_name

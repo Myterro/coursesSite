@@ -1,0 +1,51 @@
+{% extends "courser/base.html" %}
+
+{% block content %}
+
+<div class="container">
+<div class="col-sm-6">
+<div class="panel panel-default">
+<div class="panel-heading">Add author</div>
+  <div class="panel-body">
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+      <div class="field_wrapper">
+        {{ form.author_name.errors }}
+        <label for="{{ form.author_name.id_for_label }}">Author name: </label>
+        {{ form.author_name }}
+        <p style="color:red;" id="{{ form.author_name.id_for_label }}_error"></p>
+      </div>
+      <br>
+      <div class="field_wrapper">
+        {{ form.author_age.errors }}
+        <label for="{{ form.author_age.id_for_label }}">Author age: </label>
+        {{ form.author_age }}
+        <p style="color:red;" id="{{ form.author_age.id_for_label }}_error"></p>
+      </div>
+      <br>
+      <div class="field_wrapper">
+        {{ form.author_country.errors }}
+        <label for="{{ form.author_country.id_for_label }}">Author country: </label>
+        {{ form.author_country }}
+        <p style="color:red;" id="{{ form.author_country.id_for_label }}_error"></p>
+      </div>
+      <br>
+      <div class="field_wrapper">
+        {{ form.author_photo.errors }}
+        <label for="{{ form.author_photo.id_for_label }}">Author photo: </label>
+        {{ form.author_photo }}
+        <p style="color:red;" id="{{ form.author_photo.id_for_label }}_error"></p>
+      </div>
+      <br>
+    <input type="submit" value="Save" class="btn btn-success" id="submitButton">
+</form>
+
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock content %}

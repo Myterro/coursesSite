@@ -12,11 +12,14 @@
                     </div>
                     <div class="col-md-10">
                         <div class="col-xs-2">
-                                <a href="{% url 'courser:author' author.id %}">{{author.author_name}}</a>
-                            </div>
-                            <div class="col-xs-1">
-                                {{ author.author_age }}
-                            </div>
+                            <a href="{% url 'courser:author' author.id %}">{{author.author_name}}</a>
+                        </div>
+                        <div class="col-xs-1">
+                            {{ author.author_age }}
+                        </div>
+                        <div class="col-xs-1">
+                            {{ author.author_country }}
+                        </div>
                     </div>
                     </br>
                 </div>

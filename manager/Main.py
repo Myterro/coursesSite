@@ -8,3 +8,4 @@ session = RequestsOps('admin', 'adminadmin')
 request = session.get(endpoints.COURSE.value)
 if request.status_code == 200:
     print (request.content)
+

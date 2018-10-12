@@ -2,74 +2,76 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Courser</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="{% static 'courser/css/base.css' %}" type="text/css">
-    </head>
-    <body>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                  <a class="navbar-brand" href="/courser/"><img src="https://www.udemy.com/staticx/udemy/images/v6/logo-coral.svg" alt="BRAK"/></a>
-                </div>
-                <ul class="nav navbar-nav">
-                  <li><a href="/courser/">Home</a></li>
-                  <li><a href="{% url 'courser:coursesList' %}">Courses</a></li>
-                  <li><a href="{% url 'courser:authorList' %}">Authors</a></li>
-                    <li><a href="{% url 'courser:categoriesList' %}">Categories</a></li>
-                    {% if user.is_authenticated %}
-                        <li><a href="{% url 'courser:addauthor' %}">Add author</a></li>
-                        <li><a href="{% url 'courser:addcourse' %}">Add course</a></li>
-                        <li><a href="{% url 'courser:addcategory' %}">Add category</a></li>
-                    {% endif %}
-                </ul>
-                <form class="form-inline my-2 my-lg-0 pull-right" action="/courser/search/" id="searchForm">
-                  <input class="form-control input-lg" type="text" placeholder="Search by title..." name="searchInput">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" form="searchForm">Search</button>
-
-                    {% if user.is_authenticated == False %}
-                        <a href="{% url 'courser:register' %}" class="btn btn-primary">Register</a>
-                        <a href="{% url 'courser:login' %}" class="btn btn-success">Login</a>
-                    {% endif %}
-                    {% if user.is_authenticated == True %}
-                        <a href="{% url 'courser:logout' %}" class="btn btn-success">Logout</a>
-                    {% endif %}
-
-                </form>
-            </div>
-        </nav>
-
-        </br></br></br>
-        <div class="col-md-10 col-md-offset-1">
-            {% block content %}
-            {% endblock content %}
-
-                    {% if is_paginated %}
-          <ul class="pagination">
-            {% if page_obj.has_previous %}
-              <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-            {% else %}
-              <li class="disabled"><span>&laquo;</span></li>
-            {% endif %}
-            {% for i in paginator.page_range %}
-              {% if page_obj.number == i %}
-                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-              {% else %}
-                <li><a href="?page={{ i }}">{{ i }}</a></li>
-              {% endif %}
-            {% endfor %}
-            {% if page_obj.has_next %}
-              <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-            {% else %}
-              <li class="disabled"><span>&raquo;</span></li>
-            {% endif %}
-          </ul>
-        {% endif %}
-
+<head>
+    <meta charset="UTF-8">
+    <title>Courser</title>
+    <script src="{% static 'courser/js/validations.js' %}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'courser/css/base.css' %}" type="text/css">
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/courser/"><img
+                    src="https://www.udemy.com/staticx/udemy/images/v6/logo-coral.svg" alt="BRAK"/></a>
         </div>
-    </body>
+        <ul class="nav navbar-nav">
+            <li><a href="/courser/">Home</a></li>
+            <li><a href="{% url 'courser:coursesList' %}">Courses</a></li>
+            <li><a href="{% url 'courser:authorList' %}">Authors</a></li>
+            <li><a href="{% url 'courser:categoriesList' %}">Categories</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'courser:addauthor' %}">Add author</a></li>
+            <li><a href="{% url 'courser:addcourse' %}">Add course</a></li>
+            <li><a href="{% url 'courser:addcategory' %}">Add category</a></li>
+            {% endif %}
+        </ul>
+        <form class="form-inline my-2 my-lg-0 pull-right" action="/courser/search/" id="searchForm">
+            <input class="form-control input-lg" type="text" placeholder="Search by title..." name="searchInput">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" form="searchForm">Search</button>
+
+            {% if user.is_authenticated == False %}
+            <a href="{% url 'courser:register' %}" class="btn btn-primary">Register</a>
+            <a href="{% url 'courser:login' %}" class="btn btn-success">Login</a>
+            {% endif %}
+            {% if user.is_authenticated == True %}
+            <a href="{% url 'courser:logout' %}" class="btn btn-success">Logout</a>
+            {% endif %}
+
+        </form>
+    </div>
+</nav>
+
+</br></br></br>
+<div class="col-md-10 col-md-offset-1">
+    {% block content %}
+    {% endblock content %}
+
+    {% if is_paginated %}
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+    {% endif %}
+
+</div>
+</body>
 </html>

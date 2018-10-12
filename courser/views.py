@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import permission_required
 from django.utils.decorators import method_decorator
 from django.shortcuts import render_to_response
 from django.urls import reverse_lazy
-from .forms import UserCreateForm
+from . import forms
 
 
 class IndexView(generic.ListView):
@@ -62,26 +62,32 @@ class CategoriesListView(generic.ListView):
 
 @method_decorator(permission_required('addauthor.can_add', login_url='/courser/login/'), name='dispatch')
 class AddAuthorView(generic.CreateView):
-    model = Author
-    template_name = 'courser/add.html'
+    template_name = 'courser/addAuthor.html'
+    form_class = forms.AuthorCreateForm
     success_url = '/courser/author/'
-    fields = ['author_name', 'author_age', 'author_photo']
+
+    def form_valid(self, form):
+        return super().form_valid(form)
 
 
 @method_decorator(permission_required('addcourse.can_add', login_url='/courser/login/'), name='dispatch')
 class AddCourseView(generic.CreateView):
-    model = Course
-    template_name = 'courser/add.html'
-    success_url = '/courser/course'
-    fields = ['course_name', 'pub_date', 'course_desc', 'course_cover', 'course_price', 'category', 'author']
+    template_name = 'courser/addCourse.html'
+    form_class = forms.CourseCreateForm
+    success_url = '/courser/course/'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
 
 
 @method_decorator(permission_required('addcategory.can_add', login_url='/courser/login/'), name='dispatch')
 class AddCategoryView(generic.CreateView):
-    model = CourseCategory
-    template_name = 'courser/add.html'
-    success_url = '/courser/categories'
-    fields = ['category_name']
+    template_name = 'courser/addCategory.html'
+    form_class = forms.CategoryCreateForm
+    success_url = '/courser/category/'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
 
 
 class AuthorAPI(generics.ListCreateAPIView):
@@ -107,7 +113,7 @@ class Search(generic.ListView):
 
 class Register(generic.CreateView):
     template_name = 'registration/register.html'
-    form_class = UserCreateForm
+    form_class = forms.UserCreateForm
     success_url = reverse_lazy('courser:success')
 
     def form_valid(self, form):

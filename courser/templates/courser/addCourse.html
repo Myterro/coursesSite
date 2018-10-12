@@ -1,0 +1,79 @@
+{% extends "courser/base.html" %}
+
+{% block content %}
+
+<div class="container">
+<div class="col-sm-6">
+<div class="panel panel-default">
+<div class="panel-heading">Add course</div>
+  <div class="panel-body">
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+      <div class="field_wrapper">
+        {{ form.course_name.errors }}
+        <label for="{{ form.course_name.id_for_label }}">Course name: </label>
+        {{ form.course_name }}
+        <p style="color:red;" id="{{ form.course_name.id_for_label }}_error"></p>
+      </div>
+      <br>
+
+    <div class="field_wrapper">
+        {{ form.pub_date.errors }}
+        <label for="{{ form.pub_date.id_for_label }}">Publication date: </label>
+        {{ form.pub_date }}
+        <p style="color:red;" id="{{ form.pub_date.id_for_label }}_error"></p>
+      </div>
+      <br>
+
+    <div class="field_wrapper">
+        {{ form.course_desc.errors }}
+        <label for="{{ form.course_desc.id_for_label }}">Course description: </label>
+        {{ form.course_desc }}
+        <p style="color:red;" id="{{ form.course_desc.id_for_label }}_error"></p>
+      </div>
+      <br>
+
+    <div class="field_wrapper">
+        {{ form.course_price.errors }}
+        <label for="{{ form.course_price.id_for_label }}">Course price: </label>
+        {{ form.course_price }}
+        <p style="color:red;" id="{{ form.course_price.id_for_label }}_error"></p>
+      </div>
+      <br>
+
+    <div class="field_wrapper">
+        {{ form.category.errors }}
+        <label for="{{ form.category.id_for_label }}">Category: </label>
+        {{ form.category }}
+        <p style="color:red;" id="{{ form.category.id_for_label }}_error"></p>
+      </div>
+      <br>
+
+    <div class="field_wrapper">
+        {{ form.author.errors }}
+        <label for="{{ form.author.id_for_label }}">Author: </label>
+        {{ form.author }}
+        <p style="color:red;" id="{{ form.author.id_for_label }}_error"></p>
+      </div>
+      <br>
+
+    <div class="field_wrapper">
+        {{ form.course_cover.errors }}
+        <label for="{{ form.course_cover.id_for_label }}">Course cover: </label>
+        {{ form.course_cover }}
+        <p style="color:red;" id="{{ form.course_cover.id_for_label }}_error"></p>
+      </div>
+      <br>
+
+    <input type="submit" value="Save" class="btn btn-success" id="submitButton">
+</form>
+
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock content %}

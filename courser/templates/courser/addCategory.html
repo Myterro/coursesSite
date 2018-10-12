@@ -1,0 +1,30 @@
+{% extends "courser/base.html" %}
+
+{% block content %}
+
+<div class="container">
+<div class="col-sm-6">
+<div class="panel panel-default">
+<div class="panel-heading">Add category</div>
+  <div class="panel-body">
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+      <div class="field_wrapper">
+        {{ form.category_name.errors }}
+        <label for="{{ form.category_name.id_for_label }}">Category name: </label>
+        {{ form.category_name }}
+        <p style="color:red;" id="{{ form.category_name.id_for_label }}_error"></p>
+      </div>
+      <br>
+    <input type="submit" value="Save" class="btn btn-success" id="submitButton">
+</form>
+
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock content %}
